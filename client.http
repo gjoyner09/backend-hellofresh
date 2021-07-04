@@ -1,0 +1,108 @@
+@hostname = localhost
+@port = 4000
+
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+### Successfully gets all menus
+GET http://{{host}}/menus
+
+### Successfully gets the second menu
+GET http://{{host}}/menus/2
+
+### Unsuccessfully gets the 9999th menu (doesn't exist)
+GET http://{{host}}/menus/9999
+
+### Succesfully posts a menu
+POST http://{{host}}/menus
+Content-Type: {{contentType}}
+
+{
+    "week": "{{$datetime '2021-07-19'}}"
+}
+
+### unsuccesfully posts a menu
+POST http://{{host}}/menus
+Content-Type: {{contentType}}
+
+{
+    "body": "The furniture store keeps calling me to come back, but all I wanted was one night stand"
+}
+
+### Sucessfully update week 3
+PUT http://{{host}}/menus/3
+Content-Type: {{contentType}}
+
+{
+    "week": "{{$datetime '2021-07-26'}}"
+}
+
+### Sucessfully deletes week 3
+DELETE http://{{host}}/menus/3
+
+
+### Successfully gets all recipes
+GET http://{{host}}/recipes
+
+### Successfully gets the third recipe
+GET http://{{host}}/recipes/3
+
+### Succesfully posts a recipe
+POST http://{{host}}/recipes
+Content-Type: {{contentType}}
+
+{
+    "title": "Pizza",
+    "ingredients": "dough, sauce, cheese",
+    "instructions": "add sauce and cheese to dough, bake in oven for 15 minutes at 200C",
+    "nutritional_info": "1000 calories",
+    "classification": "easy"
+}
+
+### Unsuccesfully posts a recipe (no title)
+POST http://{{host}}/recipes
+Content-Type: {{contentType}}
+
+{
+    "ingredients": "dough, sauce, cheese",
+    "instructions": "add sauce and cheese to dough, bake in oven for 15 minutes at 200C",
+    "nutritional_info": "1000 calories",
+    "classification": "easy"
+}
+
+### Sucessfully update recipe 2
+PUT http://{{host}}/recipes/2
+Content-Type: {{contentType}}
+
+{
+    "nutritional_info": "1100 calories"
+}
+
+### Sucessfully deletes recipe 4
+DELETE http://{{host}}/recipes/4
+
+### Successfully shows all recipe/week combinations
+GET http://{{host}}/recipe_week_join_tables
+
+### Successfully shows the first recipe/week combination
+GET http://{{host}}/recipe_week_join_tables/1
+
+### Succesfully posts a recipe_week_join_table
+POST http://{{host}}/recipe_week_join_tables
+Content-Type: {{contentType}}
+
+{
+    "menu_id": 2,
+    "recipe_id": 3
+}
+
+### Sucessfully update recipe_week_join_table 1
+PUT http://{{host}}/recipe_week_join_tables/1
+Content-Type: {{contentType}}
+
+{
+    "recipe_id": 2
+}
+
+### Sucessfully deletes recipe_week_join_table 2
+DELETE http://{{host}}/recipes/2

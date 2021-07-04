@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_07_03_234346) do
   enable_extension "plpgsql"
 
   create_table "menus", force: :cascade do |t|
-    t.date "week"
+    t.date "week", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(version: 2021_07_03_234346) do
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.string "title"
-    t.text "ingredients"
-    t.text "instructions"
+    t.string "title", null: false
+    t.text "ingredients", null: false
+    t.text "instructions", null: false
     t.text "nutritional_info"
     t.string "classification"
     t.datetime "created_at", precision: 6, null: false
