@@ -79,7 +79,7 @@ Content-Type: {{contentType}}
 }
 
 ### Sucessfully deletes recipe 4
-DELETE http://{{host}}/recipes/4
+DELETE http://{{host}}/recipes/2
 
 ### Successfully shows all recipe/week combinations
 GET http://{{host}}/recipe_week_join_tables
