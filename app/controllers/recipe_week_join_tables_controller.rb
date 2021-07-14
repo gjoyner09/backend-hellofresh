@@ -15,9 +15,11 @@ class RecipeWeekJoinTablesController < ApplicationController
 
   # POST /recipe_week_join_tables
   def create
-    @recipe_week_join_table = RecipeWeekJoinTable.new(recipe_week_join_table_params)
+    if current_user
+      @recipe_week_join_table = RecipeWeekJoinTable.new(recipe_week_join_table_params)
+    end
 
-    if @recipe_week_join_table.save
+    if current_user && @recipe_week_join_table.save
       render json: @recipe_week_join_table, status: :created, location: @recipe_week_join_table
     else
       render json: @recipe_week_join_table.errors, status: :unprocessable_entity
@@ -26,7 +28,7 @@ class RecipeWeekJoinTablesController < ApplicationController
 
   # PATCH/PUT /recipe_week_join_tables/1
   def update
-    if @recipe_week_join_table.update(recipe_week_join_table_params)
+    if current_user && @recipe_week_join_table.update(recipe_week_join_table_params)
       render json: @recipe_week_join_table
     else
       render json: @recipe_week_join_table.errors, status: :unprocessable_entity
@@ -35,7 +37,9 @@ class RecipeWeekJoinTablesController < ApplicationController
 
   # DELETE /recipe_week_join_tables/1
   def destroy
-    @recipe_week_join_table.destroy
+    if current_user
+      @recipe_week_join_table.destroy
+    end
   end
 
   private

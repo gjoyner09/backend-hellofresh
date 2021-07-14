@@ -1,10 +1,10 @@
 class RecipesController < ApplicationController
+  before_action :authenticate_user, except: [:index, :show]
   before_action :set_recipe, only: [:show, :update, :destroy]
 
   # GET /recipes
   def index
     @recipes = Recipe.all
-
     render json: @recipes
   end
 
