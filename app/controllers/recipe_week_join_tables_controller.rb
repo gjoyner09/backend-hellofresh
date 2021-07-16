@@ -1,4 +1,5 @@
 class RecipeWeekJoinTablesController < ApplicationController
+  before_action :authenticate_user, except: [:index, :show]
   before_action :set_recipe_week_join_table, only: [:show, :update, :destroy]
 
   # GET /recipe_week_join_tables
@@ -15,11 +16,9 @@ class RecipeWeekJoinTablesController < ApplicationController
 
   # POST /recipe_week_join_tables
   def create
-    if current_user
-      @recipe_week_join_table = RecipeWeekJoinTable.new(recipe_week_join_table_params)
-    end
+    @recipe_week_join_table = RecipeWeekJoinTable.new(recipe_week_join_table_params)
 
-    if current_user && @recipe_week_join_table.save
+    if @recipe_week_join_table.save
       render json: @recipe_week_join_table, status: :created, location: @recipe_week_join_table
     else
       render json: @recipe_week_join_table.errors, status: :unprocessable_entity
@@ -28,7 +27,7 @@ class RecipeWeekJoinTablesController < ApplicationController
 
   # PATCH/PUT /recipe_week_join_tables/1
   def update
-    if current_user && @recipe_week_join_table.update(recipe_week_join_table_params)
+    if @recipe_week_join_table.update(recipe_week_join_table_params)
       render json: @recipe_week_join_table
     else
       render json: @recipe_week_join_table.errors, status: :unprocessable_entity
@@ -37,9 +36,7 @@ class RecipeWeekJoinTablesController < ApplicationController
 
   # DELETE /recipe_week_join_tables/1
   def destroy
-    if current_user
-      @recipe_week_join_table.destroy
-    end
+    @recipe_week_join_table.destroy
   end
 
   private

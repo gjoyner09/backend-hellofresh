@@ -8,7 +8,7 @@
 GET http://{{host}}/menus
 
 ### Successfully gets the second menu
-GET http://{{host}}/menus/2
+GET http://{{host}}/menus/1
 
 ### Unsuccessfully gets the 9999th menu (doesn't exist)
 GET http://{{host}}/menus/9999
@@ -92,7 +92,7 @@ POST http://{{host}}/recipe_week_join_tables
 Content-Type: {{contentType}}
 
 {
-    "menu_id": 2,
+    "menu_id": 1,
     "recipe_id": 3
 }
 
@@ -101,7 +101,7 @@ PUT http://{{host}}/recipe_week_join_tables/1
 Content-Type: {{contentType}}
 
 {
-    "recipe_id": 2
+    "recipe_id": 3
 }
 
 ### Sucessfully deletes recipe_week_join_table 2
