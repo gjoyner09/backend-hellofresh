@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :recipe2s
+  resources :menu2s
   resources :recipe_week_join_tables
   resources :menus
   resources :recipes
